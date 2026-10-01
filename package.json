@@ -1,0 +1,63 @@
+{
+  "name": "kora-shop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build --webpack",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node --import tsx scripts/migrate.ts",
+    "db:seed": "node --import tsx scripts/seed.ts",
+    "build:worker": "node scripts/build-worker.mjs",
+    "build:artifact": "pnpm build:worker && wrangler deploy --dry-run --outdir .open-next/bundle && node scripts/package-site.mjs",
+    "preview:worker": "opennextjs-cloudflare preview",
+    "email:retry": "node --import tsx scripts/retry-emails.ts"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/dm-serif-display": "^5.3.0",
+    "@neondatabase/serverless": "^1.0.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-slot": "^1.2.3",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "drizzle-orm": "^0.45.2",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.468.0",
+    "next": "16.3.6",
+    "next-auth": "^4.24.15",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "server-only": "^0.0.1",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.3.1",
+    "ws": "^8.18.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.10",
+    "@opennextjs/cloudflare": "^1.20.7",
+    "@tailwindcss/postcss": "^4.1.14",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/ws": "^8.18.1",
+    "dotenv": "^17.2.2",
+    "drizzle-kit": "^0.31.5",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.40.2"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "packageManager": "pnpm@11.25.0"
+}

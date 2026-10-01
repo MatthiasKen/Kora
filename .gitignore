@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.open-next/
+dist/
+.sites-runtime/
+.env*
+!.env.example
+.dev.vars
+*.tsbuildinfo
+test-results/
+playwright-report/
+deployment.tar.gz
+.wrangler/
+.vercel/
+next-env.d.ts

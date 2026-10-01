@@ -1,0 +1,8 @@
+packages:
+  - '.'
+allowBuilds:
+  esbuild: true
+  workerd: true
+overrides:
+  # drizzle-kit's legacy TypeScript loader otherwise installs vulnerable esbuild.
+  '@esbuild-kit/core-utils>esbuild': 0.25.12
