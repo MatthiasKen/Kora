@@ -9,10 +9,9 @@ async function handler(request: NextRequest, context: AuthContext) {
   if (!storeConfig().googleEnabled) {
     const { nextauth } = await context.params;
     const headers = { "Cache-Control": "no-store" };
-    // SessionProvider also runs for guests while store setup is incomplete.
-    // Return the guest session while authentication setup is incomplete.
+    // NextAuth's client normalizes an empty object into a guest session.
     if (request.method === "GET" && nextauth[0] === "session")
-      return Response.json(null, { headers });
+      return Response.json({}, { headers });
     if (request.method === "GET" && nextauth[0] === "providers")
       return Response.json({}, { headers });
     return Response.json(
