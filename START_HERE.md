@@ -107,6 +107,7 @@ Use `APP_MODE=live` with Paystack **test** credentials to check Google sign-in, 
 | Port 3000 is already in use | Stop the other dev/start process. For a different port, also update APP_URL and NEXTAUTH_URL. |
 | Changes do not appear | Stop the server, rebuild with `pnpm build`, then run `pnpm start`, or use `pnpm dev` while editing. |
 | Database/configuration recovery screen | Check APP_MODE and DATABASE_URL. Use demo mode until the target live database is configured and migrated. |
+| Auth server configuration error or `NO_SECRET` | Set NEXTAUTH_SECRET, GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in Vercel's Production environment, then redeploy. Generate a strong, stable secret using the command above. Guest sessions and database carts work while Google setup is incomplete; login remains unavailable. |
 | Google redirect error | The Google Web client must allow your exact `/api/auth/callback/google` URL; check the client ID, secret and NEXTAUTH_URL. |
 | Vercel build uses the wrong pnpm | Retain vercel.json and avoid replacing its install command with a plain `pnpm install` override. |
 

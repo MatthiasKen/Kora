@@ -60,6 +60,8 @@ export const authOptions: NextAuthOptions = {
   },
 };
 export async function currentUser() {
-  if (isDemo()) return null;
+  // Guest shopping must not initialize NextAuth before Google/session setup.
+  // In particular, a missing production secret would otherwise break carts.
+  if (!storeConfig().googleEnabled) return null;
   return (await getServerSession(authOptions))?.user ?? null;
 }
