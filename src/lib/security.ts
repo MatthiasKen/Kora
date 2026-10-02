@@ -4,7 +4,7 @@ import {
   randomBytes,
   timingSafeEqual,
 } from "node:crypto";
-import { appOrigin, isDemo } from "./config";
+import { appOrigin, appUrl, isDemo } from "./config";
 import { AppError } from "./errors";
 export const secretToken = () => randomBytes(32).toString("hex");
 export const tokenHash = (value: string) =>
@@ -43,9 +43,7 @@ export function assertSameOrigin(request: Request) {
 export const cookieOptions = () => ({
   httpOnly: true,
   sameSite: "lax" as const,
-  secure: (process.env.APP_URL || process.env.NEXTAUTH_URL || "").startsWith(
-    "https://",
-  ),
+  secure: (appUrl() || "").startsWith("https://"),
   path: "/",
   maxAge: 30 * 24 * 60 * 60,
 });
